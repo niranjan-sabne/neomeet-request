@@ -1,0 +1,9 @@
+.reusableMainDiv{
+    height: 100vh;
+    background-color: #2a2a72;
+    background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
+    display: inline-flex;
+    width: 100%;
+    align-items: center;
+    vertical-align: middle;
+}
