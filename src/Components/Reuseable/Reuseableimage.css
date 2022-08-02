@@ -1,9 +1,21 @@
 .reusableMainDiv{
     height: 100vh;
-    background-color: #2a2a72;
-    background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
+    background-color: #6577B3;
     display: inline-flex;
     width: 100%;
-    align-items: center;
-    vertical-align: middle;
+    background-image: url("https://wallpaper.dog/large/20550744.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.titlecss{
+    margin-top: 20% !important;
+    border: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+.TitleColor{
+    /* color: #004141; */
+    color: #005151 !important;
 }

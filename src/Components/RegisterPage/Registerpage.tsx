@@ -2,7 +2,7 @@ import { Grid } from "@mui/material";
 import React from "react";
 import Reusableimage from "../Reuseable/Reusableimage";
 
-const Loginpage: React.FC = () => {
+const Registerpage: React.FC = () => {
   return (
     <div>
       <Grid container>
@@ -15,4 +15,4 @@ const Loginpage: React.FC = () => {
   );
 };
 
-export default Loginpage;
+export default Registerpage;
