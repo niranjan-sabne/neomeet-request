@@ -5,14 +5,14 @@ const Reusableimage: React.FC = () => {
   return (
     <>
       <div className="reusableMainDiv">
-        <Card className="titlecss">
+        {/* <Card className="titlecss">
           <Typography variant="h3" className="TitleColor">
             Welcome To Meeting Portal
           </Typography>
           <Typography variant="caption" className="TitleColor">
             Web application that allows you to book meeting room.
           </Typography>
-        </Card>
+        </Card> */}
       </div>
     </>
   );

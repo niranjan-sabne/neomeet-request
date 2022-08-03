@@ -1,0 +1,28 @@
+.DropDownInput{
+    padding: 0px !important;
+}
+.InputBox{
+    padding: 0px !important;
+}
+
+.DropDown{
+    margin: 0px !important;
+    width: 164px !important;
+}
+.css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input{
+    padding-top: 8px !important;
+}
+
+.titlecss{
+    margin-top: 20% !important;
+    border: none !important;
+    margin-left: 6% !important;
+    margin-right: auto !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+.LoginPageMainDiv{
+    height: 100vh;
+    overflow: hidden;
+}
