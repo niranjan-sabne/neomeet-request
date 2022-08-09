@@ -1,28 +1,56 @@
-.DropDownInput{
-    padding: 0px !important;
+.DropDownInput {
+   padding: 0px !important;
 }
-.InputBox{
-    padding: 0px !important;
-}
-
-.DropDown{
-    margin: 0px !important;
-    width: 164px !important;
-}
-.css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input{
-    padding-top: 8px !important;
+.InputBox {
+   padding: 0px !important;
 }
 
-.titlecss{
-    margin-top: 20% !important;
-    border: none !important;
-    margin-left: 6% !important;
-    margin-right: auto !important;
-    background-color: transparent !important;
-    box-shadow: none !important;
+.DropDown {
+   margin: 0px !important;
+   width: 164px !important;
+}
+.css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input {
+   padding-top: 8px !important;
 }
 
-.LoginPageMainDiv{
-    height: 100vh;
-    overflow: hidden;
+.titlecss {
+   margin-top: 10% !important;
+   border: none !important;
+   margin-left: 6% !important;
+   margin-right: auto !important;
+   background-color: transparent !important;
+   box-shadow: none !important;
 }
+
+.LoginPageMainDiv {
+   height: 100vh;
+   overflow: hidden;
+}
+
+#outlined-weight-helper-text {
+   /* font-weight: bold; */
+   font-size: 16px;
+   font-family: 'Lucida Sans', 'Lucida Grande', sans-serif;
+}
+.submitbtn {
+   margin-left: 9% !important;
+   font-family: 'Lucida Sans', 'Lucida Grande', sans-serif;
+}
+
+.logo {
+   text-align: center;
+   margin-top: 45px !important;
+}
+
+.suptag {
+   color: red;
+}
+.outlined-basic {
+   border: 2px solid red;
+}
+
+/* @media screen and (min-width: 480px) {
+   body {
+     background-color: lightgreen;
+   }
+ } */
