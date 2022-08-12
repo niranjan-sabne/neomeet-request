@@ -30,6 +30,7 @@ const Loginpage: React.FC = () => {
       errpassword: '',
       pass: '',
    });
+
    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setemail(event.target.value);
    };
@@ -52,23 +53,38 @@ const Loginpage: React.FC = () => {
    const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
       const { maxLength, value, name } = e.target;
       const [fieldName, fieldIndex] = name.split('-');
+      const count = 1;
 
       let fieldIntIndex = parseInt(fieldIndex, 10);
+      if (fieldIndex != '' && value != '') {
+         const nextfield = document.querySelector(
+            `input[name=password-${fieldIntIndex + 1}]`
+         ) as HTMLElement | null;
+         setpassword(password + value);
 
-      if (value.length >= maxLength) {
-         if (fieldIntIndex < 7) {
-            const nextfield = document.querySelector(
-               `input[name=password-${fieldIntIndex + 1}]`
-            ) as HTMLElement | null;
-            setpassword(password + value);
+         if (nextfield !== null) {
+            nextfield.focus();
+         }
+      } else if (value == '') {
+         const nextfield = document.querySelector(
+            `input[name=password-${fieldIntIndex - 1}]`
+         ) as HTMLElement | null;
+         setpassword(password + value);
 
-            if (nextfield !== null) {
-               nextfield.focus();
-            }
+         if (nextfield !== null) {
+            nextfield.focus();
+         }
+      } else {
+         const nextfield = document.querySelector(
+            `input[name=password-${fieldIntIndex - 1}]`
+         ) as HTMLElement | null;
+         setpassword(password + value);
+
+         if (nextfield !== null) {
+            nextfield.focus();
          }
       }
    };
-
    return (
       <div className="LoginPageMainDiv">
          <Grid container>

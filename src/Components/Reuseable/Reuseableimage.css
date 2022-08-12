@@ -10,6 +10,11 @@
    background-repeat: no-repeat;
    background-size: cover;
 }
+@media screen and (max-width: 480px) {
+   .reusableMainDiv {
+      display: none;
+   }
+}
 
 .titlecss {
    margin-top: 20% !important;
