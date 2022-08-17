@@ -10,9 +10,11 @@ import {
    Typography,
    Button,
 } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Reusableimage from '../Reuseable/Reusableimage';
 import './LoginPage.css';
+import OtpInput from 'react-otp-input';
+import { useNavigate } from 'react-router-dom';
 
 const regForpassword = RegExp(/^[0-9]{6}/);
 const regForEmail = RegExp(/^[A-Za-z]+\.[A-Za-z]+$/);
@@ -21,10 +23,12 @@ const mails = [
    { value: '@neosofttech.com', label: '@neosofttech.com' },
    { value: '@wwindia.com', label: '@wwindia.com' },
 ];
+
 const Loginpage: React.FC = () => {
    const [email, setemail] = useState('@neosoftmail.com');
    const [password, setpassword] = useState('');
    const [user, setuser] = useState('');
+   const [code, setCode] = useState('');
    const [errors, seterrors] = useState({
       erremail: '',
       errpassword: '',
@@ -35,56 +39,26 @@ const Loginpage: React.FC = () => {
       setemail(event.target.value);
    };
 
-   const handler = (event: React.ChangeEvent<HTMLInputElement>) => {
+   const handler = (event: React.FocusEvent<HTMLInputElement>) => {
+      const { name, value } = event.target;
+
+      setuser(value);
+   };
+
+   const userNamehandler = (event: React.FocusEvent<HTMLInputElement>) => {
       const { name, value } = event.target;
       switch (name) {
          case 'email':
-            let error1 = regForEmail.test(value) ? '' : 'Invalid Email';
+            let error1 = regForEmail.test(value) ? '' : 'Enter valid E-mail';
             seterrors({ ...errors, erremail: error1 });
             break;
-
-         case 'password':
-            let error2 = regForpassword.test(value) ? '' : 'Invalid Password';
-            seterrors({ ...errors, errpassword: error2, pass: value });
-            break;
       }
    };
 
-   const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const { maxLength, value, name } = e.target;
-      const [fieldName, fieldIndex] = name.split('-');
-      const count = 1;
+   const navigate = useNavigate();
+   const handleChangePass = (passCode: React.SetStateAction<string>) =>
+      setCode(passCode);
 
-      let fieldIntIndex = parseInt(fieldIndex, 10);
-      if (fieldIndex != '' && value != '') {
-         const nextfield = document.querySelector(
-            `input[name=password-${fieldIntIndex + 1}]`
-         ) as HTMLElement | null;
-         setpassword(password + value);
-
-         if (nextfield !== null) {
-            nextfield.focus();
-         }
-      } else if (value == '') {
-         const nextfield = document.querySelector(
-            `input[name=password-${fieldIntIndex - 1}]`
-         ) as HTMLElement | null;
-         setpassword(password + value);
-
-         if (nextfield !== null) {
-            nextfield.focus();
-         }
-      } else {
-         const nextfield = document.querySelector(
-            `input[name=password-${fieldIntIndex - 1}]`
-         ) as HTMLElement | null;
-         setpassword(password + value);
-
-         if (nextfield !== null) {
-            nextfield.focus();
-         }
-      }
-   };
    return (
       <div className="LoginPageMainDiv">
          <Grid container>
@@ -122,7 +96,8 @@ const Loginpage: React.FC = () => {
                                  },
                               }}
                               name="email"
-                              onChange={handler}
+                              onFocus={handler}
+                              onBlur={userNamehandler}
                            />
                         </Grid>
                         <Grid item lg={4}>
@@ -144,11 +119,13 @@ const Loginpage: React.FC = () => {
                               ))}
                            </TextField>
                         </Grid>
-                        <span style={{ color: 'red' }}>{errors.erremail}</span>
+                        <span style={{ color: 'red', fontSize: '12px' }}>
+                           {errors.erremail}
+                        </span>
                      </Grid>
                   </FormControl>
                </Box>
-               <Grid className="Loginpin">
+               <Grid>
                   <FormControl sx={{ m: 4, width: '57ch' }} variant="outlined">
                      <FormHelperText id="outlined-weight-helper-text">
                         Passcode<sup className="suptag">*</sup>
@@ -164,94 +141,28 @@ const Loginpage: React.FC = () => {
                         noValidate
                         autoComplete="off"
                      >
-                        <TextField
-                           id="outlined-basic"
-                           variant="outlined"
-                           required
-                           inputProps={{ maxLength: 1 }}
-                           sx={{
-                              '& .MuiInputBase-root': {
-                                 height: 42,
-                                 borderRadius: 3,
-                              },
+                        <OtpInput
+                           className="otp"
+                           value={code}
+                           onChange={handleChangePass}
+                           numInputs={6}
+                           separator={<span style={{ width: '12px' }}></span>}
+                           isInputNum={true}
+                           shouldAutoFocus={true}
+                           inputStyle={{
+                              border: '1px solid #CFD3DB ',
+                              borderRadius: '9px',
+                              width: '36px',
+                              height: '38px',
+                              fontSize: '16px',
+                              fontWeight: '400',
                            }}
-                           name="password-1"
-                           onChange={handlePassword}
-                        />
-                        <TextField
-                           id="outlined-basic"
-                           variant="outlined"
-                           required
-                           inputProps={{ maxLength: 1 }}
-                           sx={{
-                              '& .MuiInputBase-root': {
-                                 height: 42,
-                                 borderRadius: 3,
-                              },
-                           }}
-                           name="password-2"
-                           onChange={handlePassword}
-                        />
-                        <TextField
-                           id="outlined-basic"
-                           variant="outlined"
-                           required
-                           inputProps={{ maxLength: 1 }}
-                           sx={{
-                              '& .MuiInputBase-root': {
-                                 height: 42,
-                                 borderRadius: 3,
-                              },
-                           }}
-                           name="password-3"
-                           onChange={handlePassword}
-                        />
-                        <TextField
-                           id="outlined-basic"
-                           variant="outlined"
-                           required
-                           inputProps={{ maxLength: 1 }}
-                           sx={{
-                              '& .MuiInputBase-root': {
-                                 height: 42,
-                                 borderRadius: 3,
-                              },
-                           }}
-                           name="password-4"
-                           onChange={handlePassword}
-                        />
-                        <TextField
-                           id="outlined-basic"
-                           variant="outlined"
-                           required
-                           inputProps={{ maxLength: 1 }}
-                           sx={{
-                              '& .MuiInputBase-root': {
-                                 height: 42,
-                                 borderRadius: 3,
-                              },
-                           }}
-                           name="password-5"
-                           onChange={handlePassword}
-                        />
-                        <TextField
-                           id="outlined-basic"
-                           variant="outlined"
-                           required
-                           inputProps={{ maxLength: 1 }}
-                           sx={{
-                              '& .MuiInputBase-root': {
-                                 height: 42,
-                                 borderRadius: 3,
-                              },
-                           }}
-                           name="password-6"
-                           onChange={handlePassword}
                         />
                      </Box>
                      <span style={{ color: 'red' }}>{errors.errpassword}</span>
                   </FormControl>
                </Grid>
+
                <Button
                   className="submitbtn"
                   variant="contained"
@@ -259,6 +170,12 @@ const Loginpage: React.FC = () => {
                >
                   Sign in
                </Button>
+
+               <Box className="noacc">
+                  <Typography component={'span'}>
+                     DON'T HAVE AN ACCOUNT? <a href="/register">SIGN UP</a>
+                  </Typography>
+               </Box>
             </Grid>
          </Grid>
       </div>
