@@ -1,0 +1,58 @@
+.DropDownInput {
+   padding: 0px !important;
+}
+.InputBox {
+   padding: 0px !important;
+}
+
+.DropDown {
+   margin: 0px !important;
+   width: 164px !important;
+}
+.css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input {
+   padding-top: 8px !important;
+   font-size: 14px !important;
+}
+
+.titlecss {
+   margin-top: 10% !important;
+   border: none !important;
+   margin-left: 6% !important;
+   margin-right: auto !important;
+   background-color: transparent !important;
+   box-shadow: none !important;
+}
+
+.LoginPageMainDiv {
+   height: 100vh;
+   overflow: hidden;
+}
+
+#outlined-weight-helper-text {
+   font-size: 16px;
+   font-family: 'Lucida Sans', 'Lucida Grande', sans-serif;
+}
+.submitbtn {
+   margin-left: 7.5% !important;
+   font-family: 'Lucida Sans', 'Lucida Grande', sans-serif;
+   margin: 40px;
+}
+
+.logo {
+   text-align: center;
+   margin-top: 135px !important;
+}
+
+.suptag {
+   color: red;
+}
+
+.noacc {
+   margin-left: 7% !important;
+   padding: 4px;
+   margin-top: 20px;
+}
+
+.otp {
+   margin-left: 4px;
+}

@@ -1,0 +1,29 @@
+.reusableMainDiv {
+   height: 100vh;
+
+   display: inline-flex;
+   width: 100%;
+
+   background-color: #b1bfd8;
+   background-image: url('../../../public/background.jpg'),
+      linear-gradient(315deg, #b1bfd8 0%, #6782b4 74%);
+   background-repeat: no-repeat;
+   background-size: cover;
+}
+@media screen and (max-width: 480px) {
+   .reusableMainDiv {
+      display: none;
+   }
+}
+
+.titlecss {
+   margin-top: 20% !important;
+   border: none !important;
+   margin-left: auto !important;
+   margin-right: auto !important;
+   background-color: transparent !important;
+   box-shadow: none !important;
+}
+.TitleColor {
+   color: #005151 !important;
+}
