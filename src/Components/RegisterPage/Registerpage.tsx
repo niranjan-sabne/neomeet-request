@@ -4,315 +4,386 @@ import {
   TextField,
   Button,
   FormControl,
+  FormHelperText,
   Typography,
+  OutlinedInput,
+  MenuItem,
 } from "@mui/material";
 import React from "react";
 import Reusableimage from "../Reuseable/Reusableimage";
 import "./Registerpage.css";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import OtpInput from "react-otp-input";
+import ConfOtpInput from "react-otp-input";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const regForName = /^[a-zA-Z]{2,100}$/;
-const regForEmail = RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+const regForpassword = RegExp(/^[0-9]{6}/);
+const regForEmail = RegExp(/^[A-Za-z]+\.[A-Za-z]+$/);
 
 const Registerpage: React.FC = () => {
-  const navigate = useNavigate();
+  const [email, setemail] = useState("@neosoftmail.com");
+
   const [password, setpassword] = useState("");
   const [confpassword, setconfpassword] = useState("");
-
-  const [Error, setError] = useState({
-    firstname: "",
-    lastname: "",
-    email: "",
-  });
-  const [data, setData] = useState({
+  const [code, setCode] = useState("");
+  const [Confcode, setConfcode] = useState("");
+  const [user, setuser] = useState({
     firstname: "",
     lastname: "",
     email: "",
   });
 
-  const onChangeUser = (event: any) => {
+  const [errors, seterrors] = useState({
+    errfirstname: "",
+    errlastname: "",
+    erremail: "",
+    errpassword: "",
+    pass: "",
+  });
+
+  const mails = [
+    { value: "@neosoftmail.com", label: "@neosoftmail.com" },
+    { value: "@neosofttech.com", label: "@neosofttech.com" },
+    { value: "@wwindia.com", label: "@wwindia.com" },
+  ];
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setemail(event.target.value);
+  };
+
+  const handler = (event: React.FocusEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    let errors = Error;
     switch (name) {
       case "firstname":
-        errors.firstname = regForName.test(value)
-          ? ""
-          : "Name should contain only letters";
+        setuser({ ...user, firstname: value });
         break;
-
       case "lastname":
-        errors.lastname = regForName.test(value)
-          ? ""
-          : "Name should contain only letters ";
+        setuser({ ...user, lastname: value });
         break;
 
       case "email":
-        errors.email = regForEmail.test(value) ? "" : "Enter Valid Email";
+        setuser({ ...user, email: value });
+        break;
+
+      default:
         break;
     }
-    // setError({...Error, [name]: value });
-    setData({ ...data, [name]: value });
-    console.log(errors);
-  };
-  console.log(Error);
-
-  const handlePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { maxLength, value, name } = e.target;
-    const [fieldName, fieldIndex] = name.split("-");
-
-    let fieldIntIndex = parseInt(fieldIndex, 10);
-
-    if (value.length >= maxLength) {
-      if (fieldIntIndex < 7) {
-        const nextfield = document.querySelector(
-          `input[name=password-${fieldIntIndex + 1}]`
-        ) as HTMLElement | null;
-        setpassword(password + value);
-
-        if (nextfield !== null) {
-          nextfield.focus();
-        }
-      }
-    }
   };
 
-  const validate = (Error: any) => {
-    let valid = true;
-    Object.values(Error).forEach(
-      (value: any) => value.length > 0 && (valid = false)
-    );
-    return valid;
-  };
+  const onChangeUser = (event: any) => {
+    const { name, value } = event.target;
 
-  const handleConfPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { maxLength, value, name } = e.target;
-    const [fieldName, fieldIndex] = name.split("-");
+    switch (name) {
+      case "firstname":
+        let error1 = regForName.test(value) ? "" : "Enter valid Name";
+        seterrors({ ...errors, errfirstname: error1 });
+        setuser({ ...user, firstname: value });
+        break;
 
-    let fieldIntIndex = parseInt(fieldIndex, 10);
+      case "lastname":
+        let error2 = regForName.test(value) ? "" : "Enter valid Name";
+        seterrors({ ...errors, errlastname: error2 });
+        setuser({ ...user, lastname: value });
+        break;
 
-    if (value.length >= maxLength) {
-      if (fieldIntIndex < 7) {
-        const nextfield = document.querySelector(
-          `input[name=confirmpassword-${fieldIntIndex + 1}]`
-        ) as HTMLElement | null;
-        setpassword(password + value);
-
-        if (nextfield !== null) {
-          nextfield.focus();
-        }
-      }
+      case "email":
+        let error3 = regForEmail.test(value) ? "" : "Enter valid E-mail";
+        seterrors({ ...errors, erremail: error3 });
+        setuser({ ...user, email: value });
+        break;
     }
   };
 
   const onSubmitButton = (event: any) => {
     event.preventDefault();
-    // event.target.reset();
-    if (validate(Error) && data.firstname && data.lastname && data.email) {
-      alert("Form is valid and submitted successfully!");
+    if (
+      user.firstname !== "" &&
+      user.lastname !== "" &&
+      user.email !== "" &&
+      code != "" &&
+      Confcode != ""
+    ) {
+      if (
+        !errors.errfirstname &&
+        !errors.errlastname &&
+        !errors.erremail &&
+        code === Confcode
+      ) {
+        toast.success("Form is valid and submitted successfully!✔", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } else {
+        toast.warning("Invalid Data, try again", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
     } else {
-      alert("Invalid Form, try again !!");
+      toast.error("Enter details", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
+
+  const handlePasscode = (passCode: React.SetStateAction<string>) =>
+    setCode(passCode);
+
+  const handleConfPasscode = (passCode: React.SetStateAction<string>) =>
+    setConfcode(passCode);
 
   return (
     <div>
       <Grid container>
-        <Grid item lg={8}>
+        <Grid item lg={7.5}>
           <Reusableimage />
         </Grid>
 
-        <Grid item lg={4} className="alignCenter">
-          <Grid className="logo">
+        <Grid item lg={4.5}>
+          <Grid className="registerlogo">
             <img src="neosoftlogo.png" alt="no-img" height="50px" />
           </Grid>
 
           <Box
             component="form"
-            sx={{
-              "& > :not(style)": { m: 2, width: "43ch" },
-            }}
+            sx={{ "& .MuiTextField-root": { m: 1, width: "25ch" } }}
             noValidate
             autoComplete="off"
+            className="titlecss"
           >
-            <TextField
-              error={Error?.firstname.length > 0 ? true : false}
-              id="outlined-basic"
-              label="First name"
-              name="firstname"
-              variant="outlined"
-              onChange={onChangeUser}
-              required
-              helperText={Error?.firstname.length > 0 ? Error.firstname : ""}
-            />
+            <FormControl sx={{ m: 1, width: "57ch" }} variant="outlined">
+              <FormHelperText
+                id="outlined-weight-helper-text"
+                sx={{ marginLeft: "1.8px" }}
+              >
+                First Name<sup className="suptag">*</sup>
+              </FormHelperText>
+              <Grid container>
+                <Grid item lg={12}>
+                  <OutlinedInput
+                    id="outlined-adornment-weight"
+                    aria-describedby="outlined-weight-helper-text"
+                    sx={{ width: "100%" }}
+                    inputProps={{
+                      style: {
+                        padding: 8,
+                      },
+                    }}
+                    name="firstname"
+                    // onFocus={handler}
+                    onBlur={onChangeUser}
+                  />
+                </Grid>
 
-            <TextField
-              error={Error?.lastname.length > 0 ? true : false}
-              id="outlined-basic"
-              label="Last name"
-              variant="outlined"
-              name="lastname"
-              onChange={onChangeUser}
-              required
-              helperText={Error?.lastname.length > 0 ? Error.lastname : ""}
-            />
-            <TextField
-              error={Error?.email.length > 0 ? true : false}
-              id="outlined-basic"
-              label="Email"
-              variant="outlined"
-              name="email"
-              onChange={onChangeUser}
-              required
-              helperText={Error?.email.length > 0 ? Error.email : ""}
-            />
-            <Box />
+                <span style={{ color: "red", fontSize: "12px" }}>
+                  {errors.errfirstname}
+                </span>
+              </Grid>
+            </FormControl>
 
-            <Box
-              component="form"
-              sx={{
-                "& > :not(style)": { m: 1, width: "5ch" },
-                "& .MuiInputBase-root": {
-                  height: 42,
-                  borderRadius: 3,
-                },
-              }}
-              noValidate
-              autoComplete="off"
-            >
-              <p>
-                Passcode<sup className="suptag">*</sup>
-              </p>
-              <TextField
-                id="outlined-basic"
-                variant="outlined"
-                inputProps={{ maxlength: 1 }}
-                name="password-1"
-                onChange={handlePassword}
-                required
-              />
-              <TextField
-                id="outlined-basic"
-                variant="outlined"
-                inputProps={{ maxlength: 1 }}
-                name="password-2"
-                onChange={handlePassword}
-                required
-              />
-              <TextField
-                id="outlined-basic"
-                variant="outlined"
-                inputProps={{ maxlength: 1 }}
-                name="password-3"
-                onChange={handlePassword}
-                required
-              />
-              <TextField
-                id="outlined-basic"
-                variant="outlined"
-                inputProps={{ maxlength: 1 }}
-                name="password-4"
-                onChange={handlePassword}
-                required
-              />
-              <TextField
-                id="outlined-basic"
-                variant="outlined"
-                inputProps={{ maxlength: 1 }}
-                name="password-5"
-                onChange={handlePassword}
-                required
-              />
-              <TextField
-                id="outlined-basic"
-                variant="outlined"
-                inputProps={{ maxlength: 1 }}
-                name="password-6"
-                onChange={handlePassword}
-                required
-              />
+            <FormControl sx={{ m: 1, width: "57ch" }} variant="outlined">
+              <FormHelperText
+                id="outlined-weight-helper-text"
+                sx={{ marginLeft: "1.8px" }}
+              >
+                Last Name<sup className="suptag">*</sup>
+              </FormHelperText>
+              <Grid container>
+                <Grid item lg={12}>
+                  <OutlinedInput
+                    id="outlined-adornment-weight"
+                    aria-describedby="outlined-weight-helper-text"
+                    sx={{ width: "100%" }}
+                    inputProps={{
+                      style: {
+                        padding: 8,
+                      },
+                    }}
+                    name="lastname"
+                    // onFocus={handler}
+                    onBlur={onChangeUser}
+                  />
+                </Grid>
+
+                <span style={{ color: "red", fontSize: "12px" }}>
+                  {errors.errlastname}
+                </span>
+              </Grid>
+            </FormControl>
+            <FormControl sx={{ m: 1, width: "57ch" }} variant="outlined">
+              <FormHelperText
+                id="outlined-weight-helper-text"
+                sx={{ marginLeft: "1.8px" }}
+              >
+                Email<sup className="suptag">*</sup>
+              </FormHelperText>
+              <Grid container>
+                <Grid item lg={8}>
+                  <OutlinedInput
+                    id="outlined-adornment-weight"
+                    aria-describedby="outlined-weight-helper-text"
+                    sx={{ width: "100%" }}
+                    inputProps={{
+                      style: {
+                        padding: 8,
+                      },
+                    }}
+                    name="email"
+                    // onFocus={handler}
+                    onBlur={onChangeUser}
+                  />
+                </Grid>
+                <Grid item lg={4}>
+                  <TextField
+                    id="filled-select-currency"
+                    select
+                    value={email}
+                    onChange={handleChange}
+                    variant="filled"
+                    className="DropDown"
+                  >
+                    {mails.map((option) => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
+                  </TextField>
+                </Grid>
+                <span style={{ color: "red", fontSize: "12px" }}>
+                  {errors.erremail}
+                </span>
+              </Grid>
+            </FormControl>
+            <Grid item lg={12}>
+              <FormControl sx={{ width: "57ch" }} variant="outlined">
+                <FormHelperText
+                  id="outlined-weight-helper-text"
+                  className="passcode-text"
+                >
+                  Create Passcode<sup className="suptag">*</sup>
+                </FormHelperText>
+                <Box
+                  className="pass"
+                  component="form"
+                  sx={{
+                    "& > :not(style)": {
+                      width: "5ch",
+                    },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <OtpInput
+                    className="otp"
+                    value={code}
+                    onChange={handlePasscode}
+                    numInputs={6}
+                    separator={<span style={{ width: "12px" }}></span>}
+                    isInputNum={true}
+                    shouldAutoFocus={true}
+                    inputStyle={{
+                      border: "1px solid #CFD3DB ",
+                      borderRadius: "9px",
+                      width: "36px",
+                      height: "38px",
+                      fontSize: "16px",
+                      fontWeight: "400",
+                    }}
+                  />
+                </Box>
+                {/* <span style={{ color: "red" }}>{errors.errpassword}</span> */}
+              </FormControl>
+            </Grid>
+
+            <Grid item lg={12}>
+              <FormControl sx={{ width: "57ch" }} variant="outlined">
+                <FormHelperText
+                  id="outlined-weight-helper-text"
+                  className="passcode-text"
+                >
+                  Confirm Passcode<sup className="suptag">*</sup>
+                </FormHelperText>
+                <Box
+                  className="pass"
+                  component="form"
+                  sx={{
+                    "& > :not(style)": {
+                      width: "5ch",
+                    },
+                  }}
+                  noValidate
+                  autoComplete="off"
+                >
+                  <OtpInput
+                    className="otp"
+                    value={Confcode}
+                    onChange={handleConfPasscode}
+                    numInputs={6}
+                    separator={<span style={{ width: "12px" }}></span>}
+                    isInputNum={true}
+                    shouldAutoFocus={true}
+                    inputStyle={{
+                      border: "1px solid #CFD3DB ",
+                      borderRadius: "9px",
+                      width: "36px",
+                      height: "38px",
+                      fontSize: "16px",
+                      fontWeight: "400",
+                    }}
+                  />
+                </Box>
+                {/* <span style={{ color: "red" }}>{errors.errpassword}</span> */}
+              </FormControl>
+            </Grid>
+            <Box>
+              <Button
+                variant="contained"
+                color="primary"
+                sx={{ mt: 2 }}
+                onClick={(e) => onSubmitButton(e)}
+              >
+                Sign Up
+              </Button>
             </Box>
-            <Box
-              component="form"
-              sx={{
-                "& > :not(style)": { m: 1, width: "5ch" },
-                "& .MuiInputBase-root": {
-                  height: 42,
-                  borderRadius: 3,
-                },
-              }}
-              noValidate
-              autoComplete="off"
-            >
-              <p>
-                ConfirmPasscode<sup className="suptag">*</sup>
-              </p>
-              <TextField
-                id="outlined-basic"
-                variant="outlined"
-                inputProps={{ maxlength: 1 }}
-                name="confirmpassword-1"
-                onChange={handleConfPassword}
-                required
-              />
-              <TextField
-                id="outlined-basic"
-                variant="outlined"
-                inputProps={{ maxlength: 1 }}
-                name="confirmpassword-2"
-                onChange={handleConfPassword}
-                required
-              />
-              <TextField
-                id="outlined-basic"
-                variant="outlined"
-                inputProps={{ maxlength: 1 }}
-                name="confirmpassword-3"
-                onChange={handleConfPassword}
-                required
-              />
-              <TextField
-                id="outlined-basic"
-                variant="outlined"
-                inputProps={{ maxlength: 1 }}
-                name="confirmpassword-4"
-                onChange={handleConfPassword}
-                required
-              />
-              <TextField
-                id="outlined-basic"
-                variant="outlined"
-                inputProps={{ maxlength: 1 }}
-                name="confirmpassword-5"
-                onChange={handleConfPassword}
-                required
-              />
-              <TextField
-                id="outlined-basic"
-                variant="outlined"
-                inputProps={{ maxlength: 1 }}
-                name="confirmpassword-6"
-                onChange={handleConfPassword}
-                required
-              />
+            <Box className="register-noacc">
+              <Typography component={"span"}>
+                ALREADY HAVE AN ACCOUNT? <Link to="/">SIGN IN</Link>
+              </Typography>
             </Box>
-          </Box>
-          <Box className="boxCenter">
-            <Button
-              className="submitButton"
-              variant="contained"
-              onClick={(e) => onSubmitButton(e)}
-            >
-              Submit
-            </Button>
-          </Box>
-          <br></br>
-          <Box className="Navlogin">
-            <span> ALREADY HAVE AN ACCOUNT? </span>
-            <a href="/">CLICK HERE</a>
           </Box>
         </Grid>
       </Grid>
+      <ToastContainer
+        theme="colored"
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };

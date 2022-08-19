@@ -1,18 +1,24 @@
-.submitButton{
-    margin-top: 10px !important; 
-}
-.alignCenter{
-    padding-top: 100px !important;
-    margin-top: -90px !important;
-}
-.boxCenter{
-   margin-left: 26px;
-    padding-right: 45%;
-}
-.logo{
-    margin-top: 5px !important;
+
+
+
+.registerlogo{
+    margin-top: 10%!important;
+    text-align: center;
     
 }
-.Navlogin{
-    margin-left: 26px !important;
+
+ .Confotp{
+    margin-left: 4px !important;
+} 
+
+
+.pass{
+    margin: 8px ;
+    margin-left: 4px !important;
+}
+.passcode-text{
+    margin-left: 10px !important;
+}
+.register-noacc{
+    margin-top: 10px;
 }
