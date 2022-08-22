@@ -8,46 +8,46 @@ import {
   Typography,
   OutlinedInput,
   MenuItem,
-} from "@mui/material";
-import React from "react";
-import Reusableimage from "../Reuseable/Reusableimage";
-import "./Registerpage.css";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import OtpInput from "react-otp-input";
-import ConfOtpInput from "react-otp-input";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+} from '@mui/material';
+import React from 'react';
+import Reusableimage from '../Reuseable/Reusableimage';
+import './Registerpage.css';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import OtpInput from 'react-otp-input';
+import ConfOtpInput from 'react-otp-input';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const regForName = /^[a-zA-Z]{2,100}$/;
 const regForpassword = RegExp(/^[0-9]{6}/);
 const regForEmail = RegExp(/^[A-Za-z]+\.[A-Za-z]+$/);
 
 const Registerpage: React.FC = () => {
-  const [email, setemail] = useState("@neosoftmail.com");
+  const [email, setemail] = useState('@neosoftmail.com');
 
-  const [password, setpassword] = useState("");
-  const [confpassword, setconfpassword] = useState("");
-  const [code, setCode] = useState("");
-  const [Confcode, setConfcode] = useState("");
+  const [password, setpassword] = useState('');
+  const [confpassword, setconfpassword] = useState('');
+  const [code, setCode] = useState('');
+  const [Confcode, setConfcode] = useState('');
   const [user, setuser] = useState({
-    firstname: "",
-    lastname: "",
-    email: "",
+    firstname: '',
+    lastname: '',
+    email: '',
   });
 
   const [errors, seterrors] = useState({
-    errfirstname: "",
-    errlastname: "",
-    erremail: "",
-    errpassword: "",
-    pass: "",
+    errfirstname: '',
+    errlastname: '',
+    erremail: '',
+    errpassword: '',
+    pass: '',
   });
 
   const mails = [
-    { value: "@neosoftmail.com", label: "@neosoftmail.com" },
-    { value: "@neosofttech.com", label: "@neosofttech.com" },
-    { value: "@wwindia.com", label: "@wwindia.com" },
+    { value: '@neosoftmail.com', label: '@neosoftmail.com' },
+    { value: '@neosofttech.com', label: '@neosofttech.com' },
+    { value: '@wwindia.com', label: '@wwindia.com' },
   ];
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,14 +57,14 @@ const Registerpage: React.FC = () => {
   const handler = (event: React.FocusEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     switch (name) {
-      case "firstname":
+      case 'firstname':
         setuser({ ...user, firstname: value });
         break;
-      case "lastname":
+      case 'lastname':
         setuser({ ...user, lastname: value });
         break;
 
-      case "email":
+      case 'email':
         setuser({ ...user, email: value });
         break;
 
@@ -77,20 +77,20 @@ const Registerpage: React.FC = () => {
     const { name, value } = event.target;
 
     switch (name) {
-      case "firstname":
-        let error1 = regForName.test(value) ? "" : "Enter valid Name";
+      case 'firstname':
+        let error1 = regForName.test(value) ? '' : 'Enter valid Name';
         seterrors({ ...errors, errfirstname: error1 });
         setuser({ ...user, firstname: value });
         break;
 
-      case "lastname":
-        let error2 = regForName.test(value) ? "" : "Enter valid Name";
+      case 'lastname':
+        let error2 = regForName.test(value) ? '' : 'Enter valid Name';
         seterrors({ ...errors, errlastname: error2 });
         setuser({ ...user, lastname: value });
         break;
 
-      case "email":
-        let error3 = regForEmail.test(value) ? "" : "Enter valid E-mail";
+      case 'email':
+        let error3 = regForEmail.test(value) ? '' : 'Enter valid E-mail';
         seterrors({ ...errors, erremail: error3 });
         setuser({ ...user, email: value });
         break;
@@ -100,11 +100,11 @@ const Registerpage: React.FC = () => {
   const onSubmitButton = (event: any) => {
     event.preventDefault();
     if (
-      user.firstname !== "" &&
-      user.lastname !== "" &&
-      user.email !== "" &&
-      code != "" &&
-      Confcode != ""
+      user.firstname !== '' &&
+      user.lastname !== '' &&
+      user.email !== '' &&
+      code != '' &&
+      Confcode != ''
     ) {
       if (
         !errors.errfirstname &&
@@ -112,8 +112,8 @@ const Registerpage: React.FC = () => {
         !errors.erremail &&
         code === Confcode
       ) {
-        toast.success("Form is valid and submitted successfully!✔", {
-          position: "top-right",
+        toast.success('Form is valid and submitted successfully!✔', {
+          position: 'top-right',
           autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -122,8 +122,8 @@ const Registerpage: React.FC = () => {
           progress: undefined,
         });
       } else {
-        toast.warning("Invalid Data, try again", {
-          position: "top-right",
+        toast.warning('Invalid Data, try again', {
+          position: 'top-right',
           autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -133,8 +133,8 @@ const Registerpage: React.FC = () => {
         });
       }
     } else {
-      toast.error("Enter details", {
-        position: "top-right",
+      toast.error('Enter details', {
+        position: 'top-right',
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -165,15 +165,15 @@ const Registerpage: React.FC = () => {
 
           <Box
             component="form"
-            sx={{ "& .MuiTextField-root": { m: 1, width: "25ch" } }}
+            sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' } }}
             noValidate
             autoComplete="off"
             className="titlecss"
           >
-            <FormControl sx={{ m: 1, width: "57ch" }} variant="outlined">
+            <FormControl sx={{ m: 1, width: '57ch' }} variant="outlined">
               <FormHelperText
                 id="outlined-weight-helper-text"
-                sx={{ marginLeft: "1.8px" }}
+                sx={{ marginLeft: '1.8px' }}
               >
                 First Name<sup className="suptag">*</sup>
               </FormHelperText>
@@ -182,7 +182,7 @@ const Registerpage: React.FC = () => {
                   <OutlinedInput
                     id="outlined-adornment-weight"
                     aria-describedby="outlined-weight-helper-text"
-                    sx={{ width: "100%" }}
+                    sx={{ width: '100%' }}
                     inputProps={{
                       style: {
                         padding: 8,
@@ -194,16 +194,16 @@ const Registerpage: React.FC = () => {
                   />
                 </Grid>
 
-                <span style={{ color: "red", fontSize: "12px" }}>
+                <span style={{ color: 'red', fontSize: '12px' }}>
                   {errors.errfirstname}
                 </span>
               </Grid>
             </FormControl>
 
-            <FormControl sx={{ m: 1, width: "57ch" }} variant="outlined">
+            <FormControl sx={{ m: 1, width: '57ch' }} variant="outlined">
               <FormHelperText
                 id="outlined-weight-helper-text"
-                sx={{ marginLeft: "1.8px" }}
+                sx={{ marginLeft: '1.8px' }}
               >
                 Last Name<sup className="suptag">*</sup>
               </FormHelperText>
@@ -212,7 +212,7 @@ const Registerpage: React.FC = () => {
                   <OutlinedInput
                     id="outlined-adornment-weight"
                     aria-describedby="outlined-weight-helper-text"
-                    sx={{ width: "100%" }}
+                    sx={{ width: '100%' }}
                     inputProps={{
                       style: {
                         padding: 8,
@@ -224,15 +224,15 @@ const Registerpage: React.FC = () => {
                   />
                 </Grid>
 
-                <span style={{ color: "red", fontSize: "12px" }}>
+                <span style={{ color: 'red', fontSize: '12px' }}>
                   {errors.errlastname}
                 </span>
               </Grid>
             </FormControl>
-            <FormControl sx={{ m: 1, width: "57ch" }} variant="outlined">
+            <FormControl sx={{ m: 1, width: '57ch' }} variant="outlined">
               <FormHelperText
                 id="outlined-weight-helper-text"
-                sx={{ marginLeft: "1.8px" }}
+                sx={{ marginLeft: '1.8px' }}
               >
                 Email<sup className="suptag">*</sup>
               </FormHelperText>
@@ -241,7 +241,7 @@ const Registerpage: React.FC = () => {
                   <OutlinedInput
                     id="outlined-adornment-weight"
                     aria-describedby="outlined-weight-helper-text"
-                    sx={{ width: "100%" }}
+                    sx={{ width: '100%' }}
                     inputProps={{
                       style: {
                         padding: 8,
@@ -268,13 +268,13 @@ const Registerpage: React.FC = () => {
                     ))}
                   </TextField>
                 </Grid>
-                <span style={{ color: "red", fontSize: "12px" }}>
+                <span style={{ color: 'red', fontSize: '12px' }}>
                   {errors.erremail}
                 </span>
               </Grid>
             </FormControl>
             <Grid item lg={12}>
-              <FormControl sx={{ width: "57ch" }} variant="outlined">
+              <FormControl sx={{ width: '57ch' }} variant="outlined">
                 <FormHelperText
                   id="outlined-weight-helper-text"
                   className="passcode-text"
@@ -285,8 +285,8 @@ const Registerpage: React.FC = () => {
                   className="pass"
                   component="form"
                   sx={{
-                    "& > :not(style)": {
-                      width: "5ch",
+                    '& > :not(style)': {
+                      width: '5ch',
                     },
                   }}
                   noValidate
@@ -297,16 +297,16 @@ const Registerpage: React.FC = () => {
                     value={code}
                     onChange={handlePasscode}
                     numInputs={6}
-                    separator={<span style={{ width: "12px" }}></span>}
+                    separator={<span style={{ width: '12px' }}></span>}
                     isInputNum={true}
                     shouldAutoFocus={true}
                     inputStyle={{
-                      border: "1px solid #CFD3DB ",
-                      borderRadius: "9px",
-                      width: "36px",
-                      height: "38px",
-                      fontSize: "16px",
-                      fontWeight: "400",
+                      border: '1px solid #CFD3DB ',
+                      borderRadius: '9px',
+                      width: '36px',
+                      height: '38px',
+                      fontSize: '16px',
+                      fontWeight: '400',
                     }}
                   />
                 </Box>
@@ -315,7 +315,7 @@ const Registerpage: React.FC = () => {
             </Grid>
 
             <Grid item lg={12}>
-              <FormControl sx={{ width: "57ch" }} variant="outlined">
+              <FormControl sx={{ width: '57ch' }} variant="outlined">
                 <FormHelperText
                   id="outlined-weight-helper-text"
                   className="passcode-text"
@@ -326,8 +326,8 @@ const Registerpage: React.FC = () => {
                   className="pass"
                   component="form"
                   sx={{
-                    "& > :not(style)": {
-                      width: "5ch",
+                    '& > :not(style)': {
+                      width: '5ch',
                     },
                   }}
                   noValidate
@@ -338,16 +338,16 @@ const Registerpage: React.FC = () => {
                     value={Confcode}
                     onChange={handleConfPasscode}
                     numInputs={6}
-                    separator={<span style={{ width: "12px" }}></span>}
+                    separator={<span style={{ width: '12px' }}></span>}
                     isInputNum={true}
                     shouldAutoFocus={true}
                     inputStyle={{
-                      border: "1px solid #CFD3DB ",
-                      borderRadius: "9px",
-                      width: "36px",
-                      height: "38px",
-                      fontSize: "16px",
-                      fontWeight: "400",
+                      border: '1px solid #CFD3DB ',
+                      borderRadius: '9px',
+                      width: '36px',
+                      height: '38px',
+                      fontSize: '16px',
+                      fontWeight: '400',
                     }}
                   />
                 </Box>
@@ -365,7 +365,7 @@ const Registerpage: React.FC = () => {
               </Button>
             </Box>
             <Box className="register-noacc">
-              <Typography component={"span"}>
+              <Typography component={'span'}>
                 ALREADY HAVE AN ACCOUNT? <Link to="/">SIGN IN</Link>
               </Typography>
             </Box>
