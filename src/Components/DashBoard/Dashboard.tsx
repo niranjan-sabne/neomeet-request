@@ -1,12 +1,8 @@
-
-import React from "react";
-import Reusableimage from "../Reuseable/Reusableimage";
+import React from 'react';
+import Reusableimage from '../Reuseable/Reusableimage';
 
 const Dashboard: React.FC = () => {
-  return (
-    <div>
-    </div>
-  );
+  return <div></div>;
 };
 
 export default Dashboard;

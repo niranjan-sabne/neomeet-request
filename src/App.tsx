@@ -7,19 +7,19 @@ import theme from './Components/LoginPage/theme';
 import { ThemeProvider } from '@mui/material/styles';
 
 function App() {
-   return (
-      <>
-         <ThemeProvider theme={theme}>
-            <Router>
-               <Routes>
-                  <Route path="/" element={<Loginpage />} />
-                  <Route path="/Register" element={<Registerpage />} />
-                  <Route path="/Forgetpassword" element={<Forgetpage />} />
-               </Routes>
-            </Router>
-         </ThemeProvider>
-      </>
-   );
+  return (
+    <>
+      <ThemeProvider theme={theme}>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Loginpage />} />
+            <Route path="/Register" element={<Registerpage />} />
+            <Route path="/Forgetpassword" element={<Forgetpage />} />
+          </Routes>
+        </Router>
+      </ThemeProvider>
+    </>
+  );
 }
 
 export default App;
