@@ -14,7 +14,9 @@ import React, { useEffect, useState } from 'react';
 import Reusableimage from '../Reuseable/Reusableimage';
 import './LoginPage.css';
 import OtpInput from 'react-otp-input';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const regForpassword = RegExp(/^[0-9]{6}/);
 const regForEmail = RegExp(/^[A-Za-z]+\.[A-Za-z]+$/);
@@ -39,11 +41,11 @@ const Loginpage: React.FC = () => {
     setemail(event.target.value);
   };
 
-  const handler = (event: React.FocusEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-
-    setuser(value);
-  };
+  // const handler = (event: React.FocusEvent<HTMLInputElement>) => {
+  //    const { name, value } = event.target;
+  //    console.log(value);
+  //    setuser(value);
+  // };
 
   const userNamehandler = (event: React.FocusEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -51,7 +53,46 @@ const Loginpage: React.FC = () => {
       case 'email':
         let error1 = regForEmail.test(value) ? '' : 'Enter valid E-mail';
         seterrors({ ...errors, erremail: error1 });
+        setuser(value);
         break;
+    }
+  };
+
+  const onSubmitButton = (event: any) => {
+    event.preventDefault();
+    console.log(user, 'user', code, 'code');
+    if (user !== '' && code !== '') {
+      if (!errors.erremail) {
+        toast.success('Form is valid and submitted successfully!✔', {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } else {
+        toast.warning('Invalid Data, try again', {
+          position: 'top-right',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    } else {
+      toast.error('Enter details', {
+        position: 'top-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 
@@ -96,7 +137,7 @@ const Loginpage: React.FC = () => {
                       },
                     }}
                     name="email"
-                    onFocus={handler}
+                    // onFocus={handler}
                     onBlur={userNamehandler}
                   />
                 </Grid>
@@ -160,17 +201,35 @@ const Loginpage: React.FC = () => {
             </FormControl>
           </Grid>
 
-          <Button className="submitbtn" variant="contained" color="primary">
+          <Button
+            className="submitbtn"
+            variant="contained"
+            color="primary"
+            onClick={onSubmitButton}
+          >
             Sign in
           </Button>
 
           <Box className="noacc">
             <Typography component={'span'}>
-              DON'T HAVE AN ACCOUNT? <Link to="/register">SIGN UP</Link>
+              DON'T HAVE AN ACCOUNT? <a href="/register">SIGN UP</a>
             </Typography>
           </Box>
         </Grid>
       </Grid>
+
+      <ToastContainer
+        theme="colored"
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };
