@@ -5,21 +5,23 @@ import Registerpage from './Components/RegisterPage/Registerpage';
 import Forgetpage from './Components/ForgetPage/Forgetpage';
 import theme from './Components/LoginPage/theme';
 import { ThemeProvider } from '@mui/material/styles';
+import Dashboard from './Components/DashBoard/Dashboard';
 
 function App() {
-  return (
-    <>
-      <ThemeProvider theme={theme}>
-        <Router>
-          <Routes>
-            <Route path="/" element={<Loginpage />} />
-            <Route path="/Register" element={<Registerpage />} />
-            <Route path="/Forgetpassword" element={<Forgetpage />} />
-          </Routes>
-        </Router>
-      </ThemeProvider>
-    </>
-  );
+   return (
+      <>
+         <ThemeProvider theme={theme}>
+            <Router>
+               <Routes>
+                  <Route path="/" element={<Loginpage />} />
+                  <Route path="/Register" element={<Registerpage />} />
+                  <Route path="/Forgetpassword" element={<Forgetpage />} />
+                  <Route path="/Dashboard" element={<Dashboard />} />
+               </Routes>
+            </Router>
+         </ThemeProvider>
+      </>
+   );
 }
 
 export default App;
