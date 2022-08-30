@@ -1,17 +1,31 @@
 .dashboard-leftsidebar {
    height: 91vh;
-   position: 'fixed';
-   width: '100%';
+   position: fixed;
+   width: 100%;
    background-color: #fff;
+}
+.dashboard-mobileview-leftsidebar {
+   height: 100%;
+   background-color: #fff !important;
 }
 
 .dashboard-rightsidebar {
    height: 91vh;
-   position: 'fixed';
-   right: '0';
-   width: '100%';
+   position: fixed;
+   right: 0;
+   width: 100%;
    background-color: #f2f2f2;
 }
+
+.dashboard-mobileview-rightsidebar {
+   height: 100%;
+   background-color: #f2f2f2;
+}
+.css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root {
+   display: flex !important;
+   text-align: center !important;
+}
+
 
 .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root.Mui-selected {
    color: #f12b20 !important;
@@ -32,4 +46,9 @@
 }
 .dashboard-avatar {
    box-shadow: 1px 1px rgb(168, 56, 56);
+}
+.booking-button{
+   position: absolute;
+   right: 20px;
+   bottom: 20px;
 }
