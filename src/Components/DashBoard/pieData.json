@@ -1,0 +1,15 @@
+[
+    {
+      "id": "bookedrooms",
+      "label": "booked",
+      "value": 20,
+      "color": "#33c9dc"
+    },
+    {
+      "id": "availablerooms",
+      "label": "available",
+      "value": 80,
+      "color": "#8bc34a"
+    }
+    
+  ]

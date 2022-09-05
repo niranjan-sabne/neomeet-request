@@ -26,6 +26,7 @@ import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
 import RestoreRoundedIcon from '@mui/icons-material/RestoreRounded';
 import DashboardDetails from './DashboardDetails';
 import HistoryDetails from './HistoryDetails';
+import TaskAltIcon from '@mui/icons-material/TaskAlt';
 const Dashboard: React.FC = () => {
    const [value, setValue] = useState(0);
    const [selectedIndex, setSelectedIndex] = useState(0);
@@ -145,9 +146,11 @@ const Dashboard: React.FC = () => {
             </Grid>
          </Box>
          <div className="booking-button">
-            <button>BOOKING ROOM</button>
+          <Button variant="contained" sx={{ backgroundColor: 'red' }}>
+            <TaskAltIcon /> &nbsp; Schedule Meet
+          </Button>
          </div>
-      </div>
+       </div>
    );
 };
 
