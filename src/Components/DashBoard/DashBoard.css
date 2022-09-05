@@ -26,7 +26,6 @@
    text-align: center !important;
 }
 
-
 .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root.Mui-selected {
    color: #f12b20 !important;
    background: none !important;
@@ -47,7 +46,7 @@
 .dashboard-avatar {
    box-shadow: 1px 1px rgb(168, 56, 56);
 }
-.booking-button{
+.booking-button {
    position: absolute;
    right: 40px;
    bottom: 40px;
@@ -99,4 +98,15 @@
       transform: translateY(0px);
       /* visibility: visible; */
    }
+}
+.css-idu601-MuiTableCell-root.MuiTableCell-body,
+.css-1lmemn7-MuiTableCell-root.MuiTableCell-body,
+.css-z1opk8-MuiTableCell-root.MuiTableCell-head,
+.css-z1opk8-MuiTableCell-root.MuiTableCell-head,
+.css-2xtggn-MuiTableCell-root.MuiTableCell-head {
+   text-align: center !important;
+}
+
+.historymain-div {
+   padding: 30px;
 }
