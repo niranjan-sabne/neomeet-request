@@ -6,6 +6,7 @@ import Forgetpage from './Components/ForgetPage/Forgetpage';
 import theme from './Components/LoginPage/theme';
 import { ThemeProvider } from '@mui/material/styles';
 import Dashboard from './Components/DashBoard/Dashboard';
+import MeetBooking from './Components/Booking/MeetBooking';
 
 function App() {
    return (
