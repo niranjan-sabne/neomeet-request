@@ -8,5 +8,5 @@ export interface RoomBooked {
 export interface History {
    user: number;
    name: string;
-   roombooked: RoomBooked[];
+   roomBooked: RoomBooked[];
 }

@@ -1,22 +1,21 @@
-
 const getDashboardDetails = async () => {
-  try {
-    return {
-      data: {
-        totalrooms: 20,
-        availablerooms: 13,
-        bookedrooms: 7,
-      },
-    };
-  } catch (err) {
-    return {
-      data: {
-        totalrooms: 20,
-        availablerooms: 15,
-        bookedrooms: 5,
-      },
-    };
-  }
+   try {
+      return {
+         data: {
+            totalrooms: 20,
+            availablerooms: 13,
+            bookedrooms: 7,
+         },
+      };
+   } catch (err) {
+      return {
+         data: {
+            totalrooms: 20,
+            availablerooms: 15,
+            bookedrooms: 5,
+         },
+      };
+   }
 };
 
 const getHistory = async () => {
@@ -97,4 +96,139 @@ const getHistory = async () => {
    }
 };
 
-export { getHistory, getDashboardDetails};
+const getAvailableRooms = async () => {
+   try {
+      return {
+         data: {
+            date: '2022-09-07',
+            startTime: '13:00:00',
+            endTime: '14:00:00',
+            availRooms: [
+               {
+                  id: '1',
+                  roomNo: 3,
+               },
+               {
+                  id: '2',
+                  roomNo: 5,
+               },
+               {
+                  id: '3',
+                  roomNo: 6,
+               },
+               {
+                  id: '4',
+                  roomNo: 9,
+               },
+               {
+                  id: '5',
+                  roomNo: 2,
+               },
+               {
+                  id: '6',
+                  roomNo: 4,
+               },
+               {
+                  id: '7',
+                  roomNo: 7,
+               },
+               {
+                  id: '8',
+                  roomNo: 8,
+               },
+               {
+                  id: '9',
+                  roomNo: 10,
+               },
+               {
+                  id: '10',
+                  roomNo: 12,
+               },
+               {
+                  id: '11',
+                  roomNo: 11,
+               },
+               {
+                  id: '12',
+                  roomNo: 1,
+               },
+               {
+                  id: '1',
+                  roomNo: 3,
+               },
+               {
+                  id: '2',
+                  roomNo: 5,
+               },
+               {
+                  id: '3',
+                  roomNo: 6,
+               },
+               {
+                  id: '4',
+                  roomNo: 9,
+               },
+               {
+                  id: '5',
+                  roomNo: 2,
+               },
+               {
+                  id: '6',
+                  roomNo: 4,
+               },
+               {
+                  id: '7',
+                  roomNo: 7,
+               },
+               {
+                  id: '8',
+                  roomNo: 8,
+               },
+               {
+                  id: '9',
+                  roomNo: 10,
+               },
+               {
+                  id: '10',
+                  roomNo: 12,
+               },
+               {
+                  id: '11',
+                  roomNo: 11,
+               },
+               {
+                  id: '12',
+                  roomNo: 1,
+               },
+            ],
+         },
+      };
+   } catch (err) {
+      return {
+         data: {
+            date: '2022-09-07',
+            startTime: '13:00:00',
+            endTime: '14:00:00',
+            availRooms: [
+               {
+                  id: '1',
+                  roomNo: 3,
+               },
+               {
+                  id: '2',
+                  roomNo: 5,
+               },
+               {
+                  id: '3',
+                  roomNo: 6,
+               },
+               {
+                  id: '4',
+                  roomNo: 9,
+               },
+            ],
+         },
+      };
+   }
+};
+export { getHistory, getDashboardDetails, getAvailableRooms };
