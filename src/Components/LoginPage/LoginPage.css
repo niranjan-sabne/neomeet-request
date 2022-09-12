@@ -56,3 +56,10 @@
 .otp {
    margin-left: 4px !important;
 }
+
+.forgetPassLink{
+    margin-left: 7% !important;
+   padding: 4px;
+   margin-top: 20px;
+   font-size: small;
+}

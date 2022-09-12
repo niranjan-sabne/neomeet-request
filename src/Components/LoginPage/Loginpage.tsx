@@ -197,14 +197,18 @@ const Loginpage: React.FC = () => {
                   </FormControl>
                </Grid>
 
-               <Button
-                  className="submitbtn"
-                  variant="contained"
-                  color="primary"
-                  onClick={onSubmitButton}
-               >
-                  Sign in
-               </Button>
+
+          <Button
+            className="submitbtn"
+            variant="contained"
+            color="primary"
+            onClick={onSubmitButton}
+          >
+            Sign in
+          </Button>
+          <Box className="forgetPassLink">
+            <a href="/Forgetpassword">FORGET PASSWORD?</a>
+          </Box>
 
                <Box className="noacc">
                   <Typography component={'span'}>
