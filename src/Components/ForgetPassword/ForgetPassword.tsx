@@ -189,7 +189,7 @@ export default function ForgetPassword() {
             <img src="neosoftlogo.png" alt="no-img" height="60px" />
           </Grid>
           <Paper className="forgetPass" sx={{ width: '400px' }} elevation={3}>
-            FORGET PASSWORD
+            {stepper == 0 ? 'FORGET PASSWORD' : 'CHANGE PASSWORD'}
           </Paper>
           {stepper == 0 ? (
             <>
