@@ -1,0 +1,112 @@
+.dashboard-leftsidebar {
+   height: 91vh;
+   position: fixed;
+   width: 100%;
+   background-color: #fff;
+}
+.dashboard-mobileview-leftsidebar {
+   height: 100%;
+   background-color: #fff !important;
+}
+
+.dashboard-rightsidebar {
+   height: 91vh;
+   position: fixed;
+   right: 0;
+   width: 100%;
+   background-color: #f2f2f2;
+}
+
+.dashboard-mobileview-rightsidebar {
+   height: 100%;
+   background-color: #f2f2f2;
+}
+.css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root {
+   display: flex !important;
+   text-align: center !important;
+}
+
+.css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root.Mui-selected {
+   color: #f12b20 !important;
+   background: none !important;
+}
+
+.css-i4bv87-MuiSvgIcon-root.Mui-selected {
+   color: #f12b20 !important;
+   background: none !important;
+}
+.css-cveggr-MuiListItemIcon-root.Mui-selected {
+   color: #f12b20 !important;
+   background: none !important;
+}
+.neoname {
+   font-size: 35px;
+   text-shadow: 1px 1px black;
+}
+.dashboard-avatar {
+   box-shadow: 1px 1px rgb(168, 56, 56);
+}
+.booking-button {
+   position: absolute;
+   right: 40px;
+   bottom: 40px;
+}
+.Available-rooms{
+   text-align: center;
+   transform: translateY(-130px);
+   
+  visibility: visible;
+}
+.main-dashboard-div{
+   height: 90vh !important;
+}
+.dashboard-details-card{
+   width: 70%;
+   height: calc(100%/3) !important;
+}
+.pie-main-div{
+   /* vertical-align: middle; */
+   padding-top: 9%;
+}
+
+.dash-booked{
+   box-shadow: rgb(12, 12, 12) 0px 2px 8px 0px !important;
+    animation: hideHead 1.78s ease-in-out 0s !important;
+    animation-fill-mode: forwards;
+
+ }
+ .dash-available{
+   box-shadow: rgb(12, 12, 12) 0px 2px 8px 0px !important;
+    animation: hideHead 1.78s ease-in-out 0s !important;
+    animation-fill-mode: forwards;
+
+ }
+ .dash-total{
+    box-shadow: rgb(12, 12, 12) 0px 2px 8px 0px !important;
+    animation: hideHead 1.78s ease-in-out 0s !important;
+    animation-fill-mode: forwards;
+    
+   }
+   @keyframes hideHead {
+      from{
+         transform: translateY(-1000px);
+      opacity: 0;
+   }
+   to {
+      opacity: 1;
+      transition-property: top, bottom, 1;
+      transform: translateY(0px);
+      /* visibility: visible; */
+   }
+}
+.css-idu601-MuiTableCell-root.MuiTableCell-body,
+.css-1lmemn7-MuiTableCell-root.MuiTableCell-body,
+.css-z1opk8-MuiTableCell-root.MuiTableCell-head,
+.css-z1opk8-MuiTableCell-root.MuiTableCell-head,
+.css-2xtggn-MuiTableCell-root.MuiTableCell-head {
+   text-align: center !important;
+}
+
+.historymain-div {
+   padding: 30px;
+}
