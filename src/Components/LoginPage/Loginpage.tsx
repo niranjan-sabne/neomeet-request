@@ -209,6 +209,9 @@ const Loginpage: React.FC = () => {
           >
             Sign in
           </Button>
+          <Box className="forgetPassLink">
+            <a href="/Forgetpassword">FORGET PASSWORD?</a>
+          </Box>
 
           <Box className="noacc">
             <Typography component={'span'}>
